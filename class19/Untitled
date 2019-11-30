@@ -1,0 +1,35 @@
+#include<iostream>
+using namespace std;
+
+int maxHistArea(int arr[],int n){
+    stack<int> s;
+    int max=INT_MIN ,area;
+
+    s.push(0);
+    for(int i=0;i<n;i++){
+        if(arr[i]<s.top()){
+            int h=arr[i];
+            int b=1;
+            while(s.top()>= h or s.empty()){
+                b++;
+                s.pop();
+            }
+            area=b*h;
+            if(area>max){
+                max=area;
+            }
+
+        }
+        else{
+            s.push(arr[i]);
+        }
+
+    }
+
+return max;}
+
+int main(){
+    int arr[]={3,4,6,1,2,4};
+    cout<<maxHistArea(arr,6);
+    return 0;
+}
